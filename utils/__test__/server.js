@@ -29,7 +29,7 @@ describe('Images', () => {
         chai.request(server)
             .post('/image')
             .field('customKey', 'customValue')
-            .attach('files', './testImage/test1.png', 'test1.png')
+            .attach('files', './utils/__test__/testImage/test1.png', 'test1.png')
             .end((err, res) => {
                   res.should.have.status(200);
                    res.body.should.be.a('object');
