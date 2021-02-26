@@ -1,4 +1,3 @@
-const { promises } = require('fs');
 var Jimp = require('jimp');
 const path = require("path");
 

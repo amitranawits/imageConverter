@@ -1,7 +1,7 @@
 {
   "name": "processimage",
   "version": "1.0.0",
-  "description": "Process image with diffreent extension",
+  "description": "Process image with different extension",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",

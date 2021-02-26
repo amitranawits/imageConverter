@@ -40,4 +40,11 @@ Your app should now be running on [localhost:3000](http://localhost:3000/).
 Two api's are there
 
 - GET image
+/image?name=test.png&type=name&ext=jpeg
+type can be url or name 
+ext can be any extension jpeg, png etc 
+name should be image name
+
 - POST image
+
+files = multiple files
