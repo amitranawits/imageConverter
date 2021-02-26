@@ -11,10 +11,10 @@ chai.use(chaiHttp);
 
 describe('Images', () => {
     
-  describe('/GET getImage', () => {
+  describe('/GET image', () => {
       it('getting image with change extenson', (done) => {
         chai.request(server)
-            .get('/getImage?name=test.png&type=name&ext=jpeg')
+            .get('/image?name=test.png&type=name&ext=jpeg')
             .end((err, res) => {
                   res.should.have.status(200);
               done();
@@ -27,7 +27,7 @@ describe('Images', () => {
   describe('/POST saveImage', () => {
       it('saving image', (done) => {
         chai.request(server)
-            .post('/saveImage')
+            .post('/image')
             .field('customKey', 'customValue')
             .attach('files', './testImage/test1.png', 'test1.png')
             .end((err, res) => {

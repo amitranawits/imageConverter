@@ -1,13 +1,13 @@
 'use strict';
 
-var service = require('../service');
+var utils = require('../utils');
 const path = require("path");
 const fs = require('fs')
 const stream = require('stream')
 
 var controllers = {
     saveFile: function(req, res) {
-       service.saveImage.uploadFile(req, res, function(err, dist) {
+       utils.saveImage.uploadFile(req, res, function(err, dist) {
             if (err) {
                 res.send(err);
             }
@@ -18,7 +18,7 @@ var controllers = {
     },
     convertFile: async function(req, res) {
         try {
-            const pathToImg = await service.imageConverter.convertFile(req);
+            const pathToImg = await utils.imageConverter.convertFile(req);
             // fs.readFile(path.join(__dirname, pathToImg), (err, data) => {
             //     res.status(200).send(data.toString());
             //  });

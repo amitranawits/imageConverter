@@ -3,8 +3,8 @@
 const controller = require('./controller');
 
 module.exports = function(app) {
-   app.route('/getImage')
+   app.route('/image')
        .get(controller.convertFile);
-   app.route('/saveImage')
+   app.route('/image')
        .post(controller.saveFile);
 };
