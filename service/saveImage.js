@@ -20,10 +20,10 @@ var saveImage = {
     uploadFile: function(req, res, next) {
         upload(req, res, function(err) {
             if (err) {
-                console.log(err, '======')
                 return res.end("Something went wrong!");
             }
-            return res.send("File uploaded sucessfully!.");
+            res.status(200).send({status: 200, message: "File uploaded sucessfully!."});
+           // return res.send("File uploaded sucessfully!.");
         });
     }
 };
