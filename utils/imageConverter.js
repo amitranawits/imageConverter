@@ -5,6 +5,7 @@ const fs = require('fs');
 
 // We can change size 
 const convertFileExt = async (url, id, ext) => {
+    console.log(url, id, ext)
     return new Promise((resolve, reject) => {
         Jimp.read(url)
         .then(lenna => {
@@ -31,9 +32,15 @@ var imageConverter = {
     convertFile: async function(req) {
         return new Promise(async (resolve, reject) => {
             try {
-                const file = await getFileFromFolder(req.query.id);
-                await convertFileExt(path.join(__dirname, `../images/${file}`), req.query.id, req.query.ext)
-                return resolve(`../images/${req.query.id}.${req.query.ext}`);
+                let fileData = req.params.file.split('.');
+                const file = await getFileFromFolder(fileData[0]);
+                if(file){
+                    await convertFileExt(path.join(__dirname, `../images/${file}`), fileData[0], fileData[1]);
+                    return resolve({status: 'success', 'message': `../images/${fileData[0]}.${fileData[1]}`});
+                }
+                else {
+                    return resolve({status: 'err', 'message': 'No file found!'});
+                }
             }
             catch(err) {
                 return reject(err)

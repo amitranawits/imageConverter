@@ -20,9 +20,19 @@ var upload = multer({
 var saveImage = {
     uploadFile: function(req, res, next) {
         upload(req, res, function(err) {
-            if (err) {
-                return res.end("Something went wrong!");
+            if (!req.files) {
+                return res.send({status: 400, message: 'Please select an image to upload'});
             }
+            else if (err instanceof multer.MulterError) {
+                return res.send({status: 400, message: err});
+            }
+            else if (err) {
+                return res.send({status: 400, message: err});
+            }
+
+            // if (err) {
+            //     return res.end("Something went wrong!");
+            // }
             res.status(200).send({status: 200, message: "File uploaded sucessfully!.", imageId:filename});
            // return res.send("File uploaded sucessfully!.");
         });

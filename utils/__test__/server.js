@@ -28,7 +28,7 @@ describe('images', () => {
               describe('/GET image', () => {
                 it('getting image with change extenson', (done) => {
                   chai.request(server)
-                      .get(`/image?id=${resp.body.imageId}&ext=jpeg`)
+                      .get(`/image/id=${resp.body.imageId}.png`)
                       .end((err, res) => {
                         res.should.have.status(200);
                         done();
