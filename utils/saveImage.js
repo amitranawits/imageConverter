@@ -1,14 +1,15 @@
 var multer = require('multer');
 var uuid = require('uuid');
 var filename = uuid.v4();
+const path = require("path");
 
 //Current folder for storing is Image
 var Storage = multer.diskStorage({
     destination: function(req, file, callback) {
-        callback(null, "./Images");
+        callback(null, "./images");
     },
     filename: function(req, file, callback) {
-        callback(null, filename  + '_' + file.originalname);
+        callback(null, filename  + '.' + path.extname(file.originalname).slice(1) );
     }
 });
 // Limit 10
@@ -22,7 +23,7 @@ var saveImage = {
             if (err) {
                 return res.end("Something went wrong!");
             }
-            res.status(200).send({status: 200, message: "File uploaded sucessfully!."});
+            res.status(200).send({status: 200, message: "File uploaded sucessfully!.", imageId:filename});
            // return res.send("File uploaded sucessfully!.");
         });
     }

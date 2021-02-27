@@ -9,18 +9,9 @@ const path = require("path");
 
 chai.use(chaiHttp);
 
-describe('Images', () => {
+describe('images', () => {
     
-  describe('/GET image', () => {
-      it('getting image with change extenson', (done) => {
-        chai.request(server)
-            .get('/image?name=test.png&type=name&ext=jpeg')
-            .end((err, res) => {
-                  res.should.have.status(200);
-              done();
-            });
-      });
-  });
+
   /*
   * Test the /POST route
   */
@@ -30,11 +21,23 @@ describe('Images', () => {
             .post('/image')
             .field('customKey', 'customValue')
             .attach('files', './utils/__test__/testImage/test1.png', 'test1.png')
-            .end((err, res) => {
-                  res.should.have.status(200);
-                   res.body.should.be.a('object');
-              done();
-            });
+            .end((err, resp) => {
+              resp.should.have.status(200);
+              resp.body.should.be.a('object');
+              
+              describe('/GET image', () => {
+                it('getting image with change extenson', (done) => {
+                  chai.request(server)
+                      .get(`/image?id=${resp.body.imageId}&ext=jpeg`)
+                      .end((err, res) => {
+                        res.should.have.status(200);
+                        done();
+                      });
+                });
+              });
+
+          done();
+        });
       });
 
   });
