@@ -40,8 +40,7 @@ Your app should now be running on [localhost:3000](http://localhost:3000/).
 Two api's are there
 
 - GET image
-/image?id=123&ext=jpeg
-ext can be any extension jpeg, png etc 
+/image?id=123.jpeg
 id will be given while saving image api.
 
 - POST image
